@@ -18,12 +18,6 @@ apply plugin: 'kotlin'
 apply plugin: 'application'
 apply plugin: 'org.junit.platform.gradle.plugin'
 
-kotlin {
-    experimental {
-        coroutines 'enable'
-    }
-}
-
 mainClassName = "com.rocketmiles.krba.AppKt"
 
 junitPlatform {
@@ -43,16 +37,16 @@ dependencies {
     // your application's newer version of Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
 
-    testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
     testCompile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-    testCompile ('org.jetbrains.spek:spek-api:1.1.5') {
-        exclude group: 'org.jetbrains.kotlin'
-    }
-    testRuntime ('org.jetbrains.spek:spek-junit-platform-engine:1.1.5') {
-        exclude group: 'org.junit.platform'
-        exclude group: 'org.jetbrains.kotlin'
-    }
+    testCompile 'org.jetbrains.spek:spek-api:1.1.5'
+    testRuntime 'org.jetbrains.spek:spek-junit-platform-engine:1.1.5'
+    testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
+//    testCompile "org.junit.jupiter.junit-jupiter-api.5.0.0-M1"
+//    testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+
 }
+
+
 
 compileKotlin {
     kotlinOptions.jvmTarget = "1.8"

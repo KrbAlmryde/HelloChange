@@ -1,21 +1,31 @@
 package com.rocketmiles.krba
 
+import java.lang.NumberFormatException
+
 class Clerk {
-    private val register = CashRegister()
+    private var command: String = ""
+    private var arguments:List<Int> = listOf()
 
-    fun processTransaction() {
-        val input = readLine()
-        if (input != null) {
+    fun processRequest(input:String?) {
+        val temp = input.toString().trim().split("\\s+".toRegex())
+        command = temp.first()
 
+        arguments = temp.subList(1, temp.lastIndex+1).map {
+            try {
+                it.toInt()
+            }
+            catch (e: NumberFormatException) {
+                command = "failed"
+                0
+            }
         }
 
+        if (arguments.size > 1 && (command == "show" || command == "quit")) command = "fail"
+        else if ((command == "put" || command == "take") && arguments.size > 5)  command = "fail"
     }
 
-    fun run() {
-        while(true) {
-            print("> ")
-            processTransaction()
+    fun getCommand():String = command
+    fun getValues():List<Int> = arguments
+    fun getAmount():Int = arguments.first()
 
-        }
-    }
 }

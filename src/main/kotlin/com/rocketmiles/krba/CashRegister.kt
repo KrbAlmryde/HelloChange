@@ -110,6 +110,16 @@ class CashRegister(_20: Int = 1, _10: Int = 2, _5: Int = 3, _2:Int = 4, _1:Int =
         println(result)
         return result
     }
+
+    /**
+     * @name: empty
+     * @description: convenience function to empty the till,
+     */
+    fun empty() {
+        denominations.forEach { till.put(it, 0) }
+        show()
+    }
+
     /**
      * @name: findSolutions
      * @param: amount, Int - The running amount of change to generate
