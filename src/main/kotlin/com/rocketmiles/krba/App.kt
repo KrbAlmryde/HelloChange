@@ -35,6 +35,9 @@ fun main(args: Array<String>) {
                 println("Bye")
                 return
             }
+            "help" -> {
+                println(clerk.getHelp())
+            }
             else -> {
                 println("Oops, try again")
             }

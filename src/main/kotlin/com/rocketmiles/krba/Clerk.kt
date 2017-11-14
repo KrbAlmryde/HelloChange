@@ -1,6 +1,6 @@
 package com.rocketmiles.krba
-
 import java.lang.NumberFormatException
+
 
 class Clerk {
     private var command: String = ""
@@ -27,5 +27,11 @@ class Clerk {
     fun getCommand():String = command
     fun getValues():List<Int> = arguments
     fun getAmount():Int = arguments.first()
-
+    fun getHelp():String = """
+            Available Commands:
+            show - Displays the current value of the set, as well as the number per denomination
+            put [args] -
+            take [args] -
+            change [arg]
+        """
 }

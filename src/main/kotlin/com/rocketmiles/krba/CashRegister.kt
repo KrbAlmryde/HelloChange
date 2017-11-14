@@ -88,7 +88,7 @@ class CashRegister(_20: Int = 1, _10: Int = 2, _5: Int = 3, _2:Int = 4, _1:Int =
     fun makeChange(amount:Int): String {
         val solutionSpace: MutableList<Map<Int, Int>> = mutableListOf()
         findSolutions(amount, 0, mutableListOf(), null, solutionSpace) // it returns the number of iterations, but we dont need it for now
-        var result = ""
+        val result: String
         val viable = solutionSpace.filter{ sol ->
             denominations.map { k -> if (till.getValue(k) >= sol.getValue(k)) 1 else 0 }.sum() > 4
         }
@@ -113,7 +113,7 @@ class CashRegister(_20: Int = 1, _10: Int = 2, _5: Int = 3, _2:Int = 4, _1:Int =
 
     /**
      * @name: empty
-     * @description: convenience function to empty the till,
+     * @description: convenience function to empty the till, largely for debugging purposes
      */
     fun empty() {
         denominations.forEach { till.put(it, 0) }
@@ -128,7 +128,6 @@ class CashRegister(_20: Int = 1, _10: Int = 2, _5: Int = 3, _2:Int = 4, _1:Int =
      * @param: solutions, MutableList<Map<Int, Int>> - A global list of all solutions found
      *
      * @return: Integer, Recursive
-     * Description:
      * Notes: This solution is drawn heavily from this SO answer: https://stackoverflow.com/a/1106973 @ leif
      *        I am more than happy to talk about it
      *        - KRA
